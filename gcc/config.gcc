@@ -595,6 +595,9 @@ xtensa*-*-*)
 	extra_options="${extra_options} fused-madd.opt"
 	extra_objs="xtensa-dynconfig.o"
 	;;
+dcpu-*-*)
+	cpu_type=dcpu
+	;;
 esac
 
 tm_file=${cpu_type}/${cpu_type}.h
@@ -3639,6 +3642,10 @@ m32c-*-elf*)
 	c_target_objs="m32c-pragma.o"
 	cxx_target_objs="m32c-pragma.o"
  	;;
+dcpu-*-none)
+	gas=no
+	gnu_ld=no
+	;;
 *)
 	echo "*** Configuration ${target} not supported" 1>&2
 	exit 1

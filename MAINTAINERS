@@ -67,6 +67,7 @@ c6x port		Bernd Schmidt		<bernds_cb1@t-online.de>
 cris port		Hans-Peter Nilsson	<hp@axis.com>
 c-sky port		Xianmiao Qu		<cooper.qu@linux.alibaba.com>
 c-sky port		Yunhai Shang		<yunhai@linux.alibaba.com>
+dcpu port		Tyler Kuhn		<contact@tyknet.tk>
 fr30 port		Nick Clifton		<nickc@redhat.com>
 frv port		Nick Clifton		<nickc@redhat.com>
 frv port		Alexandre Oliva		<aoliva@gcc.gnu.org>

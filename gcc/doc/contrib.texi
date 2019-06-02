@@ -536,6 +536,9 @@ Bruce Korb for the new and improved fixincludes code.
 Benjamin Kosnik for his G++ work and for leading the libstdc++-v3 effort.
 
 @item
+Tyler Kuhn for porting the TechCompliant DCPU-16 specification.
+
+@item
 Maxim Kuvyrkov for contributions to the instruction scheduler, the Android 
 and m68k/Coldfire ports, and optimizations.
 
