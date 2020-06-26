@@ -34,10 +34,11 @@
 
 //Define registers
 #define PC_REGNUM REG_PC
+#define STACK_POINTER_REGNUM REG_SP
 
 //Define register properties
 #define FIXED_REGISTERS {			\
-	0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1	\
+	0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1	\
 }
 
 #define CALL_USED_REGISTERS {		\
@@ -63,7 +64,7 @@ enum reg_class
 	"ALL_REGS"				\
 }
 
-#define N_REG_CLASSES (int) LIM_REG_CLASSES
+#define N_REG_CLASSES LIM_REG_CLASSES
 
 //Define which registers are in which classes
 #define REG_CLASS_CONTENTS {	\
@@ -80,5 +81,20 @@ enum reg_class
 #define BASE_REG_CLASS GENERAL_REGS
 #define INDEX_REG_CLASS NO_REGS
 
-//Define register move cost
+//Define costs
+#define MEMORY_MOVE_COST(mode, class, in) 1
+#define BRANCH_COST(speed_p, predictable_p)
+#define MOVE_MAX 1
 #define REGISTER_MOVE_COST(mode, from, to) 1
+
+//Define the stack registers
+#define STACK_POINTER_REGNUM REG_SP
+#define FRAME_POINTER_REGNUM REG_Z
+#define ARG_POINTER_REGNUM FRAME_POINTER_REGNUM
+
+#define FUNCTION_ARG_REGNO_P(regno)		\
+	(regno < REG_X)
+	
+//Define elimination registers
+#define ELIMINABLE_REGS {}
+	

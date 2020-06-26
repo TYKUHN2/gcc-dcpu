@@ -13,10 +13,8 @@
 #define WORDS_BIG_ENDIAN 1
 
 //Tell GCC memory is addressed in 16-bit units which is also a word
-#undef BITS_PER_UNIT
-#define BITS_PER_UNIT 16
-
-#define UNITS_PER_WORD 1
+#define UNITS_PER_WORD 2
+#define MAX_REGS_PER_ADDRESS 1
 
 //Tell GCC we only operate on single, full registers
 #define MAX_FIXED_MODE_SIZE 16
@@ -33,7 +31,14 @@
 #define BIGGEST_ALIGNMENT 16
 #define STRICT_ALIGNMENT 1
 
-//Redefine some C storage types
-#define CHAR_TYPE_SIZE 8
-#define LONG_TYPE_SIZE 32
-#define LONG_LONG_TYPE_SIZE 64
+//Define the machine modes used by the machine
+#define Pmode SImode
+#define FUNCTION_MODE SImode
+
+//Define how the stack behaves
+#define STACK_GROWS_DOWNWARD 1
+#define FRAME_GROWS_DOWNWARD 1
+
+//Define what capabilities we have
+#define HAS_LONG_COND_BRANCH true
+#define HAS_LONG_UNCOND_BRANCH true

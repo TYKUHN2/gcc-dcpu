@@ -17,31 +17,16 @@
 //Architecture registers
 #include "registers.h"
 
-//Define how the stack behaves
-#define STACK_GROWS_DOWNWARD 1
+//Type information
+#include "types.h"
 
-//Define the stack registers
-#define STACK_POINTER_REG_NUM REG_SP
-#define FRAME_POINTER_REG_NUM REG_Z
-
-/*
-	Define costs of instructions
-*/
-#define MEMORY_MOVE_COST(mode, class, in) 1
-#define BRANCH_COST(speed_p, predictable_p)
-#define MOVE_MAX 1
-
-/*
-	Define how to pass arguments and call functions
-*/
-#define CUMULATIVE_ARGS int
-
-//Define exeception handling for C exceptions
-#define EH_RETURN_DATA_REGN(N) N < 4 ? N - 1 : INVALID_REGNUM
-
-//More exeception handling directly ripped from Moxie
-#define EH_RETURN_HANDLER_RTX gen_frame_mem (Pmode,											\
-								plus_constant (Pmode, frame_pointer_rtx, UNITS_PER_WORD))
+//Functional information
+#include "functions.h"
 
 //Assembler syntax
 #include "asm.h"
+
+#define TARGET_CPU_CPP_BUILTINS() {		\
+	builtin_define_std("dcpu");			\
+	builtin_define("__BIG_ENDIAN__");	\
+}
