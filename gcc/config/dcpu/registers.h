@@ -96,5 +96,7 @@ enum reg_class
 	(regno < REG_X)
 	
 //Define elimination registers
-#define ELIMINABLE_REGS {}
+#define ELIMINABLE_REGS { \
+	{ FRAME_POINTER_REGNUM, STACK_POINTER_REGNUM } \
+}
 	
