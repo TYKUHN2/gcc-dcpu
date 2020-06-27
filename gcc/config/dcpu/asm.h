@@ -14,3 +14,7 @@
 //Disable GNU Assembler features not found in DASM
 #define ASM_APP_ON ""
 #define ASM_APP_OFF ""
+
+#define ASM_GENERATE_INTERNAL_LABEL(str, prefix, num) sprintf(str, "LGCC%s%d:\n", prefix, num)
+
+#define ASM_OUTPUT_ALIGN(str, power) fprintf(str, "; GCC ALIGN %d", power);
