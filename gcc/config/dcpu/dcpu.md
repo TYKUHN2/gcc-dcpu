@@ -7,7 +7,6 @@
 ;	The purpose of this file is to define the opcodes available for the DCPU and how they operate
 ;
 
-
 ; INSTRUCTIONS REFERENCE FOR DEVELOPMENT ONLY
 ;
 ;	SINGLE INSTRUCTIONS
@@ -79,6 +78,20 @@
 ;	UND
 ;	STI
 ;	STD
+
+; (include "constraints.md") Include is broken for some reason so the contents were copied below
+
+(define_register_constraint "a" "A_REG" "The A register")
+(define_register_constraint "b" "B_REG" "The B register")
+(define_register_constraint "c" "C_REG" "The C register")
+
+(define_register_constraint "x" "X_REG" "The X register")
+(define_register_constraint "y" "Y_REG" "The Y register")
+(define_register_constraint "z" "Z_REG" "The Z register")
+
+(define_register_constraint "j" "IJNC_REG" "The I and J registers")
+
+(define_register_constraint "e" "EX_REG" "The EX register")
 
 ;
 ;	Define useful macros
