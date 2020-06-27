@@ -23,3 +23,9 @@
 
 //Define jump table handling
 #define CASE_VECTOR_MODE SImode
+
+#define INIT_CUMULATIVE_ARGS(cum, fntype, libname, fndecl, n_args) cum = REG_A
+
+#define FUNCTION_PROFILER(file, labelno) (abort(), 0)
+
+#define FIRST_PARM_OFFSET(fndecl) 0
