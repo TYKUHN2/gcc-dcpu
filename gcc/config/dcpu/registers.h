@@ -48,7 +48,6 @@ enum reg_class
 	X_REG, Y_REG, Z_REG,
 	IJNC_REG, EX_REG,		// Note IJNC naming is to prevent conflicts with GCC files.
 	GENERAL_REGS,
-	INDEXABLE_REGS,
 	ALL_REGS,
 	LIM_REG_CLASSES
 };
@@ -59,7 +58,6 @@ enum reg_class
 	"X", "Y", "Z",			\
 	"I/J", "EX",			\
 	"GENERAL_REGS",			\
-	"INDEXABLE_REGS",		\
 	"ALL_REGS"				\
 }
 
@@ -72,13 +70,12 @@ enum reg_class
 	{ 1 << REG_X }, { 1 << REG_Y }, { 1 << REG_Z },	\
 	{ (1 << REG_I) | (1 << REG_J) }, { 1 << REG_EX }, \
 	{ 0b00011111111 },			\
-	{ 0b10011111111 },			\
 	{ 0b11111111111 }			\
 }
 
 #define REGNO_REG_CLASS(R) (R < REG_PC ? (reg_class)(R + 1) : (R == REG_EX ? EX_REG : ALL_REGS))
 							
-#define BASE_REG_CLASS INDEXABLE_REGS
+#define BASE_REG_CLASS GENERAL_REGS
 #define INDEX_REG_CLASS NO_REGS
 
 //Define costs
@@ -92,7 +89,7 @@ enum reg_class
 #define FRAME_POINTER_REGNUM REG_Z
 #define ARG_POINTER_REGNUM FRAME_POINTER_REGNUM
 
-#define FUNCTION_ARG_REGNO_P(regno) (regno < REG_X)
+#define FUNCTION_ARG_REGNO_P(regno) regno < REG_X
 	
 //Define elimination registers
 #define ELIMINABLE_REGS { \
@@ -101,5 +98,5 @@ enum reg_class
 	{ FRAME_POINTER_REGNUM, STACK_POINTER_REGNUM }	\
 }
 
-#define REGNO_OK_FOR_BASE_P(regno) (regno < REG_PC ? 1 : (regno == REG_EX ? 1 : 0)) 
+#define REGNO_OK_FOR_BASE_P(regno) regno < REG_PC ? 1 : 0 
 	
