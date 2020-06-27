@@ -38,29 +38,33 @@
 
 //Define register properties
 #define FIXED_REGISTERS {			\
-	0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1	\
+	0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1	\
 }
 
-#define CALL_USED_REGISTERS {		\
-	1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1	\
+#define CALL_REALLY_USED_REGISTERS {	\
+	1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0		\
 }
 
 //Define register classes
 enum reg_class
 {
-  NO_REGS,
-  SPECIAL_REGS,
-  GENERAL_REGS,
-  INDIR_REGS,
-  ALL_REGS,
-  LIM_REG_CLASSES
+	NO_REGS,
+	A_REG, B_REG, C_REG,
+	X_REG, Y_REG, Z_REG,
+	INC_REG, EX_REG,
+	GENERAL_REGS,
+	INDEXABLE_REGS,
+	ALL_REGS,
+	LIM_REG_CLASSES
 };
 
 #define REG_CLASS_NAMES {	\
 	"NO_REGS",				\
-	"SPECIAL_REGS",			\
+	"A", "B", "C",			\
+	"X", "Y", "Z",			\
+	"I/J", "EX",			\
 	"GENERAL_REGS",			\
-	"INDIR_REGS",			\
+	"INDEXABLE_REGS",		\
 	"ALL_REGS"				\
 }
 
@@ -69,21 +73,22 @@ enum reg_class
 //Define which registers are in which classes
 #define REG_CLASS_CONTENTS {	\
 	{ 0b00000000000 },			\
-	{ 0b00000111110 },			\
-	{ 0b11111110000 },			\
-	{ 0b00000000001 },			\
+	{ 1 << REG_A }, { 1 << REG_B }, { 1 << REG_C },	\
+	{ 1 << REG_X }, { 1 << REG_Y }, { 1 << REG_Z },	\
+	{ (1 << REG_I) | (1 << REG_J) }, { 1 << REG_EX }, \
+	{ 0b00011111111 },			\
+	{ 0b10011111111 },			\
 	{ 0b11111111111 }			\
 }
 
-#define REGNO_REG_CLASS(R) ((R == REG_IA) ? INDIR_REGS :				\
-							(R > REG_Z ? SPECIAL_REGS : GENERAL_REGS))
+#define REGNO_REG_CLASS(R) (R < REG_PC ? (reg_class)(R + 1) : (R ? REG_EX : EX_REG : ALL_REGS))
 							
 #define BASE_REG_CLASS GENERAL_REGS
 #define INDEX_REG_CLASS NO_REGS
 
 //Define costs
 #define MEMORY_MOVE_COST(mode, class, in) 1
-#define BRANCH_COST(speed_p, predictable_p)
+#define BRANCH_COST(speed, predictable) predictable ? 2 : 3
 #define MOVE_MAX 1
 #define REGISTER_MOVE_COST(mode, from, to) 1
 
@@ -97,6 +102,8 @@ enum reg_class
 	
 //Define elimination registers
 #define ELIMINABLE_REGS { \
+	{ ARG_POINTER_REGNUM, FRAME_POINTER_REGNUM } \
+	{ ARG_POINTER_REGNUM, STACK_POINTER_REGNUM } \
 	{ FRAME_POINTER_REGNUM, STACK_POINTER_REGNUM } \
 }
 	
