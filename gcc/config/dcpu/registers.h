@@ -39,6 +39,7 @@
 //Define register properties
 #define FIXED_REGISTERS { 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1 }
 #define CALL_REALLY_USED_REGISTERS { 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0 }
+#define CALL_USED_REGISTERS { 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1 }
 
 //Define register classes
 enum reg_class
