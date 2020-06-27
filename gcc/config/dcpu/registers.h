@@ -37,13 +37,8 @@
 #define STACK_POINTER_REGNUM REG_SP
 
 //Define register properties
-#define FIXED_REGISTERS {			\
-	0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1	\
-}
-
-#define CALL_REALLY_USED_REGISTERS {	\
-	1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0		\
-}
+#define FIXED_REGISTERS { 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1 }
+#define CALL_REALLY_USED_REGISTERS { 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0 }
 
 //Define register classes
 enum reg_class
@@ -51,7 +46,7 @@ enum reg_class
 	NO_REGS,
 	A_REG, B_REG, C_REG,
 	X_REG, Y_REG, Z_REG,
-	INC_REG, EX_REG,
+	IJNC_REG, EX_REG,		// Note IJNC naming is to prevent conflicts with GCC files.
 	GENERAL_REGS,
 	INDEXABLE_REGS,
 	ALL_REGS,
@@ -81,9 +76,9 @@ enum reg_class
 	{ 0b11111111111 }			\
 }
 
-#define REGNO_REG_CLASS(R) (R < REG_PC ? (reg_class)(R + 1) : (R ? REG_EX : EX_REG : ALL_REGS))
+#define REGNO_REG_CLASS(R) (R < REG_PC ? (reg_class)(R + 1) : (R == REG_EX ? EX_REG : ALL_REGS))
 							
-#define BASE_REG_CLASS GENERAL_REGS
+#define BASE_REG_CLASS INDEXABLE_REGS
 #define INDEX_REG_CLASS NO_REGS
 
 //Define costs
@@ -97,13 +92,14 @@ enum reg_class
 #define FRAME_POINTER_REGNUM REG_Z
 #define ARG_POINTER_REGNUM FRAME_POINTER_REGNUM
 
-#define FUNCTION_ARG_REGNO_P(regno)		\
-	(regno < REG_X)
+#define FUNCTION_ARG_REGNO_P(regno) (regno < REG_X)
 	
 //Define elimination registers
 #define ELIMINABLE_REGS { \
-	{ ARG_POINTER_REGNUM, FRAME_POINTER_REGNUM } \
-	{ ARG_POINTER_REGNUM, STACK_POINTER_REGNUM } \
-	{ FRAME_POINTER_REGNUM, STACK_POINTER_REGNUM } \
+	{ ARG_POINTER_REGNUM, FRAME_POINTER_REGNUM },	\
+	{ ARG_POINTER_REGNUM, STACK_POINTER_REGNUM },	\
+	{ FRAME_POINTER_REGNUM, STACK_POINTER_REGNUM }	\
 }
+
+#define REGNO_OK_FOR_BASE_P(regno) (regno < REG_PC ? 1 : (regno == REG_EX ? 1 : 0)) 
 	
