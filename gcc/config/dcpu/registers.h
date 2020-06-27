@@ -98,5 +98,6 @@ enum reg_class
 	{ FRAME_POINTER_REGNUM, STACK_POINTER_REGNUM }	\
 }
 
-#define REGNO_OK_FOR_BASE_P(regno) regno < REG_PC ? 1 : 0 
+#define REGNO_OK_FOR_BASE_P(regno) regno < REG_PC ? 1 : 0
+#define REGNO_OK_FOR_INDEX_P(regno) 0
 	
