@@ -18,3 +18,10 @@
 #define ASM_GENERATE_INTERNAL_LABEL(str, prefix, num) sprintf(str, "LGCC%s%d:\n", prefix, num)
 
 #define ASM_OUTPUT_ALIGN(str, power) fprintf(str, "; GCC ALIGN %d", power);
+#define ASM_OUTPUT_SKIP(str, size) fprintf(str, ".fill 0x0, %d\n", size);
+#define ASM_OUTPUT_COMMON(str, name, size, aligned) assemble_name(str, name); ASM_OUTPUT_SKIP(str, aligned)
+#define ASM_OUTPUT_LOCAL(str, name, size, aligned) ASM_OUTPUT_COMMON(str, name, size, aligned)
+
+#define TARGET_HAVE_NAMED_SECTIONS false
+
+#define GLOBAL_ASM_OP "; .global\n"
