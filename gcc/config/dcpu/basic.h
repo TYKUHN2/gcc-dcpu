@@ -32,8 +32,8 @@
 #define STRICT_ALIGNMENT 1
 
 //Define the machine modes used by the machine
-#define Pmode SImode
-#define FUNCTION_MODE SImode
+#define Pmode HImode
+#define FUNCTION_MODE HImode
 
 //Define how the stack behaves
 #define STACK_GROWS_DOWNWARD 1
