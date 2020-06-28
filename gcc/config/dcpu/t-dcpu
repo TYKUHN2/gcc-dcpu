@@ -1,9 +1,2 @@
-md_file = md
 
-MD_FILES = dcpu
-
-md : $(MD_FILES:%=$(srcdir)/config/dcpu/%.md) $(srcdir)/config/dcpu/t-dcpu
-	for md in $(MD_FILES); do \
-	  echo "(include \"$(srcdir)/config/dcpu/$$md.md\")"; \
-	done > md
 	
