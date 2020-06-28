@@ -597,6 +597,8 @@ xtensa*-*-*)
 	;;
 dcpu-*-*)
 	cpu_type=dcpu
+	use-collect2=yes
+	target_has_targetm_common=no
 	;;
 esac
 
