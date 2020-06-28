@@ -7,14 +7,13 @@
 ;	The purpose of this file is to define the opcodes available for the DCPU and how they operate
 ;
 
-(define_register_constraint "a" "A" "The A register")
-(define_register_constraint "b" "B" "The B register")
-(define_register_constraint "c" "C" "The C register")
+(define_register_constraint "a" "A_REG" "The A register")
+(define_register_constraint "b" "B_REG" "The B register")
+(define_register_constraint "c" "C_REG" "The C register")
 
-(define_register_constraint "x" "X" "The X register")
-(define_register_constraint "y" "Y" "The Y register")
-(define_register_constraint "z" "Z" "The Z register")
+(define_register_constraint "x" "X_REG" "The X register")
+(define_register_constraint "y" "Y_REG" "The Y register")
+(define_register_constraint "z" "Z_REG" "The Z register")
 
-(define_register_constraint "j" "IJNC" "The I and J registers")
-
-(define_register_constraint "e" "EX" "The EX register")
+(define_register_constraint "j" "IJNC_REG" "The I and J registers")
+(define_register_constraint "e" "EX_REG" "The EX register")
