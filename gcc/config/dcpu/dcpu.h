@@ -30,3 +30,6 @@
 	builtin_define_std("dcpu");			\
 	builtin_define("__BIG_ENDIAN__");	\
 }
+
+#define TARGET_HAVE_CTORS_DTORS false
+#define USE_COLLECT2 true
