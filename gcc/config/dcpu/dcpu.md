@@ -79,19 +79,19 @@
 ;	STI
 ;	STD
 
-; (include "constraints.md") Include is broken for some reason so the contents were copied below
+; Include is broken for some reason so the contents were copied below
+(include "constraints.md")
 
-(define_register_constraint "a" "A_REG" "The A register")
-(define_register_constraint "b" "B_REG" "The B register")
-(define_register_constraint "c" "C_REG" "The C register")
+;(define_register_constraint "a" "A_REG" "The A register")
+;(define_register_constraint "b" "B_REG" "The B register")
+;(define_register_constraint "c" "C_REG" "The C register")
 
-(define_register_constraint "x" "X_REG" "The X register")
-(define_register_constraint "y" "Y_REG" "The Y register")
-(define_register_constraint "z" "Z_REG" "The Z register")
+;(define_register_constraint "x" "X_REG" "The X register")
+;(define_register_constraint "y" "Y_REG" "The Y register")
+;(define_register_constraint "z" "Z_REG" "The Z register")
 
-(define_register_constraint "j" "IJNC_REG" "The I and J registers")
-
-(define_register_constraint "e" "EX_REG" "The EX register")
+;(define_register_constraint "j" "IJNC_REG" "The I and J registers")
+;(define_register_constraint "e" "EX_REG" "The EX register")
 
 ;
 ;	Define useful macros
@@ -114,8 +114,8 @@
 
 ; CALL Definition
 (define_insn "call"
-	[(call	(match_operand:SI 0 "memory_operand")
-			(match_operand:SI 1 "")
+	[(call	(match_operand:HI 0 "memory_operand")
+			(match_operand:HI 1 "")
 	)]
 	""
 	"JSR %0"
@@ -132,7 +132,7 @@
 
 (define_insn "indirect_jump"
 	[(set	(pc)
-			(match_operand:SI 0 "")
+			(match_operand:HI 0 "")
 	)]
 	""
 	"SET PC, %0"
@@ -142,8 +142,8 @@
 (define_expand "cbranchsi4"
 	[(cond_exec
 		(match_operator 0 "comparison_operator" [
-			(match_operand:SI 1 "")
-			(match_operand:SI 2 "")
+			(match_operand:HI 1 "")
+			(match_operand:HI 2 "")
 		])
 		(set (pc) (label_ref (match_operand 3 "")))
 	)]
@@ -167,8 +167,8 @@
 ])
 
 (define_insn "*<cmp>"
-	[(condop 	(match_operand:SI 0 "")
-				(match_operand:SI 1 "")
+	[(condop 	(match_operand:HI 0 "")
+				(match_operand:HI 1 "")
 	)]
 	""
 	"<cmp> $1, $0"
@@ -184,8 +184,8 @@
 ])
 
 (define_insn "*<pcmp>ORE"
-	[(condop2	(match_operand:SI 0 "")
-				(match_operand:SI 1 "")
+	[(condop2	(match_operand:HI 0 "")
+				(match_operand:HI 1 "")
 	)]
 ""
 "<pcmp> $1, $0
@@ -194,8 +194,8 @@ IFE $1, $0"
 
 ; Define the iteration instructions
 (define_insn "*sti"
-	[(set 	(match_operand:SI 0 "")
-			(match_operand:SI 1 ""))
+	[(set 	(match_operand:HI 0 "")
+			(match_operand:HI 1 ""))
 	(set	(reg REG_I)
 			(plus (reg REG_I) (const_int 1)))
 	(set	(reg REG_J)
@@ -206,8 +206,8 @@ IFE $1, $0"
 )
 
 (define_insn "*std"
-	[(set 	(match_operand:SI 0 "")
-			(match_operand:SI 1 ""))
+	[(set 	(match_operand:HI 0 "")
+			(match_operand:HI 1 ""))
 	(set	(reg REG_I)
 			(minus (reg REG_I) (const_int 1)))
 	(set	(reg REG_J)
