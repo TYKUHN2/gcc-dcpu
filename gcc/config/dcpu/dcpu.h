@@ -33,3 +33,8 @@
 
 #define TARGET_HAVE_CTORS_DTORS false
 #define USE_COLLECT2 true
+
+bool dcpu_void_false();
+
+#define TARGET_DECIMAL_FLOAT_SUPPORTED_P dcpu_void_false
+#define TARGET_FIXED_POINT_SUPPORTED_P dcpu_void_false

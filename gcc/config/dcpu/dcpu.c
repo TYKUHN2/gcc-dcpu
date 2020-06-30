@@ -42,6 +42,8 @@ rtx dcpu_function_value(const_tree ret_type, const_tree fn_decl, bool outgoing) 
 
 #define TARGET_FUNCTION_VALUE dcpu_function_value
 
+bool dcpu_void_false() { return false; }
+
 #include "dcpu.h"
 #include "target.h"
 #include "target-def.h"
