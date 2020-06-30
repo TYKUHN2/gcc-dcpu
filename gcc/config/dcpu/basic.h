@@ -32,13 +32,15 @@
 #define STRICT_ALIGNMENT 1
 
 //Define the machine modes used by the machine
-#define Pmode HImode
 #define FUNCTION_MODE HImode
 
 //Define how the stack behaves
 #define STACK_GROWS_DOWNWARD 1
 #define FRAME_GROWS_DOWNWARD 1
+#define STACK_ALIGNMENT_NEEDED 0
 
 //Define what capabilities we have
 #define HAS_LONG_COND_BRANCH true
 #define HAS_LONG_UNCOND_BRANCH true
+
+#define PROMOTE_MODE(m, unsignedp, type) m = HImode

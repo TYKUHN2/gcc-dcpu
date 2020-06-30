@@ -25,6 +25,7 @@
 
 #define SIZE_TYPE "unsigned int"
 
+#define Pmode HImode
 #define POINTER_SIZE 16
 #define PTR_TYPE "unsigned int"
 #define PTRDIFF_TYPE "int"
