@@ -79,19 +79,7 @@
 ;	STI
 ;	STD
 
-; Include is broken for some reason so the contents were copied below
 (include "constraints.md")
-
-;(define_register_constraint "a" "A_REG" "The A register")
-;(define_register_constraint "b" "B_REG" "The B register")
-;(define_register_constraint "c" "C_REG" "The C register")
-
-;(define_register_constraint "x" "X_REG" "The X register")
-;(define_register_constraint "y" "Y_REG" "The Y register")
-;(define_register_constraint "z" "Z_REG" "The Z register")
-
-;(define_register_constraint "j" "IJNC_REG" "The I and J registers")
-;(define_register_constraint "e" "EX_REG" "The EX register")
 
 ;
 ;	Define useful macros
@@ -139,7 +127,7 @@
 )
 
 ; CONDITIONAL Definitions
-(define_expand "cbranchsi4"
+(define_expand "cbranchhi4"
 	[(cond_exec
 		(match_operator 0 "comparison_operator" [
 			(match_operand:HI 1 "")

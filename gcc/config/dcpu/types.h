@@ -24,7 +24,6 @@
 
 //Define extra type information
 #define DEFAULT_SIGNED_CHAR 0
-#define MAX_FIXED_MODE_SIZE 16
 
 //Define floating point sizes despite the fact we lack that capability
 #define FLOAT_TYPE_SIZE 32
