@@ -1,0 +1,11 @@
+/*
+	Target definition for the DCPU-16 specifically the TechCompliant variety
+	Copyright (C) 2019 Tyler Kuhn
+	
+	This file is an addition to GCC, not part of GCC.
+	
+	The purpose of this file is to define some basic information for the DCPU architecture.
+*/
+
+#define BITS_PER_UNIT 16
+#define MAX_BITSIZE_MODE_ANY_MODE 16

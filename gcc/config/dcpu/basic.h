@@ -13,7 +13,7 @@
 #define WORDS_BIG_ENDIAN 1
 
 //Tell GCC memory is addressed in 16-bit units which is also a word
-#define UNITS_PER_WORD 2
+#define UNITS_PER_WORD 1
 #define MAX_REGS_PER_ADDRESS 1
 
 //Tell GCC we only operate on single, full registers
